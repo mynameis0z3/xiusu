@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>林立三｜個人專業能力生命樹</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 朽宿慢調理保健 品牌色 */
+  --coal:#1A1A18;
+  --ink:#2C2C2A;
+  --rice:#F2EDE4;
+  --wheat:#E8DFD0;
+  --copper:#8B7355;
+  --copper-light:#A08B6A;
+  /* 系統警示色（EVA 感,克制使用） */
+  --warn:#9c3324;
+  --warn-bright:#c24a35;
+  --line:rgba(242,237,228,.09);
+  --max:1160px;
+  --serif:"Noto Serif TC","Songti TC",serif;
+  --num:"EB Garamond",Georgia,serif;
+  --mono:"JetBrains Mono","Courier New",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--coal);color:var(--rice);
+  font-family:var(--serif);font-weight:300;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 50% 0%, rgba(139,115,85,.07), transparent 45%);
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:90;pointer-events:none;
+  background-image:linear-gradient(rgba(242,237,228,.012) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(242,237,228,.012) 1px,transparent 1px);
+  background-size:34px 34px;
+}
+.wrap{width:min(calc(100% - 32px),var(--max));margin:auto}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.28em;color:var(--copper-light);text-transform:uppercase}
+.file-stamp{position:absolute;top:22px;right:22px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:rgba(242,237,228,.24);text-align:right;line-height:1.7}
+section{position:relative}
+
+/* corner brackets — 通用 HUD 邊角 */
+.hud-corners{position:relative}
+.hud-corners::before,.hud-corners::after{content:"";position:absolute;width:14px;height:14px;border-color:var(--copper);border-style:solid;opacity:.6}
+.hud-corners::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.hud-corners::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+
+/* ================= 00 開場 ================= */
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:80px 20px;border-bottom:1px solid var(--line)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(56px,13vw,150px);letter-spacing:.02em;margin:18px 0 4px}
+.hero .romaji{font-family:var(--mono);letter-spacing:.5em;font-size:clamp(12px,2vw,16px);color:var(--copper-light);margin-left:.5em}
+.hero .role{margin-top:26px;font-size:clamp(14px,2vw,17px);color:var(--rice)}
+.hero .disciplines{margin-top:6px;color:var(--wheat);opacity:.75;font-size:clamp(12px,1.6vw,14px);letter-spacing:.03em}
+.hero .lede{max-width:560px;margin:44px auto 0;color:var(--wheat);opacity:.8;line-height:2.1;font-size:14px}
+.hero .lede b{color:var(--rice);font-weight:500;opacity:1}
+.scroll-cue{margin-top:56px;font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:rgba(242,237,228,.4);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ================= section shell ================= */
+.section{padding:110px 0;border-bottom:1px solid var(--line)}
+.section-head{margin-bottom:60px}
+.section-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(36px,6vw,66px);margin:10px 0 0;letter-spacing:.02em}
+.section-head p{max-width:600px;color:var(--wheat);opacity:.8;line-height:1.95;margin:18px 0 0;font-size:14.5px}
+
+/* ================= 01 THE TREE ================= */
+.tree-stage{position:relative}
+.anatomy-bg{position:absolute;inset:-60px 0 0 0;z-index:0;opacity:.05;pointer-events:none}
+.anatomy-bg svg{width:100%;height:100%}
+.tree{position:relative;max-width:920px;margin:auto;z-index:1}
+.trunk{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(139,115,85,.3);transform:translateX(-50%)}
+.trunk-fill{position:absolute;left:50%;top:0;width:1px;height:0;background:linear-gradient(var(--warn-bright),var(--warn));transform:translateX(-50%);box-shadow:0 0 12px rgba(156,51,36,.4)}
+.sync-tag{position:absolute;left:50%;top:0;transform:translate(14px,-8px);font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--warn-bright);white-space:nowrap}
+
+.node-row{display:flex;justify-content:center;padding:34px 0;position:relative}
+.split-row{position:relative;padding:20px 0;min-height:200px}
+.split-row .connector{position:absolute;inset:0;width:100%;height:100%}
+.split-row .connector line{stroke:rgba(139,115,85,.3);stroke-width:1}
+.split-row .connector line.lit{stroke:var(--warn-bright);opacity:.55}
+.node-pair{display:flex;justify-content:space-between;align-items:center;height:100%;padding:0 6%;position:relative;z-index:1}
+
+.node{
+  width:134px;height:134px;border-radius:50%;border:1px solid rgba(139,115,85,.5);background:var(--ink);
+  display:grid;place-items:center;text-align:center;cursor:pointer;position:relative;z-index:2;
+  transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease,background .3s ease;
+}
+.node::before{content:"";position:absolute;inset:9px;border:1px solid rgba(139,115,85,.25);border-radius:50%}
+.node .ring{position:absolute;inset:-15px;border:1px dashed var(--copper-light);border-radius:50%;opacity:0;transition:opacity .3s;animation:spin 10s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.node .num{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--copper-light);background:var(--coal);padding:0 6px}
+.node strong{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:.06em;display:block}
+.node span{display:block;font-family:var(--mono);color:var(--wheat);opacity:.7;font-size:9px;letter-spacing:.14em;margin-top:6px}
+.node:hover{border-color:var(--copper-light)}
+.node.on{
+  transform:scale(1.06);border-color:var(--warn-bright);
+  box-shadow:0 0 0 1px rgba(156,51,36,.4),0 0 26px rgba(156,51,36,.3);
+  background:#231a15;
+}
+.node.on strong{color:var(--rice)}
+.node.on .ring{opacity:.55}
+
+/* ================= floating tech panel ================= */
+.backdrop{
+  position:fixed;inset:0;background:rgba(10,8,6,.6);backdrop-filter:blur(1.5px);
+  opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:200;
+}
+.backdrop.open{opacity:1;pointer-events:auto}
+
+.float-panel{
+  position:fixed;z-index:201;width:min(360px,calc(100vw - 28px));
+  background:linear-gradient(180deg,#221a14,#181310);
+  border:1px solid var(--copper);
+  clip-path:polygon(0 10px,10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%);
+  box-shadow:0 0 0 1px rgba(0,0,0,.6),0 22px 50px rgba(0,0,0,.55),0 0 30px rgba(139,115,85,.15);
+  opacity:0;transform:scale(.94) translateY(6px);
+  transform-origin:var(--fp-origin,50% 100%);
+  transition:opacity .22s ease,transform .22s ease;
+  pointer-events:none;
+}
+.float-panel.open{opacity:1;transform:scale(1) translateY(0);pointer-events:auto}
+
+.fp-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(139,115,85,.08)}
+.fp-head .fp-id{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--copper-light);display:flex;align-items:center;gap:7px}
+.fp-dot{width:6px;height:6px;border-radius:50%;background:var(--warn-bright);box-shadow:0 0 8px var(--warn-bright);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.fp-close{width:22px;height:22px;display:grid;place-items:center;border:1px solid rgba(139,115,85,.4);color:var(--wheat);cursor:pointer;font-family:var(--mono);font-size:13px;background:none;line-height:1}
+.fp-close:hover{border-color:var(--warn-bright);color:var(--rice)}
+
+.fp-body{padding:18px 18px 20px;position:relative;overflow:hidden}
+.fp-scan{position:absolute;left:0;right:0;height:38px;background:linear-gradient(180deg,rgba(139,115,85,.16),transparent);top:-38px;animation:scan 3.4s linear infinite}
+@keyframes scan{0%{top:-38px}100%{top:100%}}
+.fp-body h4{font-family:var(--serif);font-weight:500;font-size:21px;margin:0 0 4px;position:relative}
+.fp-sub{font-family:var(--mono);font-size:10px;color:var(--wheat);opacity:.7;letter-spacing:.08em;margin-bottom:14px;position:relative}
+.fp-empty{color:var(--wheat);opacity:.8;font-size:13.5px;line-height:1.9;position:relative}
+.cred-row{padding:11px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;position:relative}
+.cred-row:first-of-type{border-top:none}
+.cred-row b{font-size:14px;line-height:1.6;font-weight:500}
+.cred-row small{color:var(--wheat);opacity:.7;font-size:11.5px;white-space:nowrap}
+.fp-foot{font-family:var(--mono);font-size:9px;color:rgba(139,115,85,.6);letter-spacing:.15em;margin-top:14px;position:relative}
+
+/* ================= 07 PROFESSIONAL RECORD ================= */
+.groups{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.group{background:var(--ink);border:1px solid rgba(139,115,85,.3);padding:30px;position:relative}
+.group::before{content:attr(data-code);position:absolute;right:18px;top:16px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--copper)}
+.group h3{font-family:var(--serif);font-weight:500;font-size:22px;margin:0 0 20px}
+.rec{padding:13px 0;border-top:1px solid var(--line)}
+.rec:first-of-type{border-top:none}
+.rec b{font-size:14.5px;line-height:1.6;font-weight:500}
+.rec small{display:block;color:var(--wheat);opacity:.7;margin-top:4px;font-size:12px}
+
+/* ================= 09 NEXT NODE（鎖定節點） ================= */
+.timeline{display:flex;gap:44px;align-items:center;flex-wrap:wrap}
+.lock-ring{
+  width:186px;height:186px;border-radius:50%;flex:none;position:relative;
+  background:repeating-conic-gradient(var(--copper) 0deg 6deg, transparent 6deg 14deg);
+  display:grid;place-items:center;padding:8px;
+}
+.future{
+  width:100%;height:100%;border-radius:50%;background:var(--coal);border:1px solid rgba(139,115,85,.5);
+  display:grid;place-items:center;text-align:center;color:var(--wheat);position:relative;
+}
+.future svg{width:34px;height:34px;stroke:var(--copper-light);margin-bottom:8px}
+.future strong{font-family:var(--mono);font-size:16px;color:var(--wheat);display:block}
+.future span{display:block;font-size:9px;letter-spacing:.2em;margin-top:6px;font-family:var(--mono);color:var(--copper-light)}
+.future-text{flex:1;min-width:240px}
+.future-text h3{font-family:var(--serif);font-weight:500;font-size:26px;margin:0 0 10px}
+.future-text p{color:var(--wheat);opacity:.8;line-height:1.9;margin:0;font-size:14px}
+
+/* ================= 08 奇怪的技能樹 ================= */
+.weird{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.side-tree{position:relative;padding-left:60px}
+.side-tree::before{content:"";position:absolute;left:18px;top:8px;bottom:8px;width:1px;background:var(--warn);opacity:.5}
+.skill{position:relative;padding:18px 0;border-bottom:1px solid var(--line);transition:.25s}
+.skill::before{content:"";position:absolute;left:-42px;top:50%;width:40px;height:1px;background:var(--warn);opacity:.6}
+.skill::after{content:"";position:absolute;left:-47px;top:calc(50% - 5px);width:10px;height:10px;border:1px solid var(--warn);border-radius:50%;background:var(--coal)}
+.skill:hover{background:rgba(156,51,36,.06)}
+.skill:hover::after{background:var(--warn-bright);box-shadow:0 0 12px rgba(156,51,36,.6)}
+.skill .code{font-family:var(--mono);font-size:10px;color:var(--copper);letter-spacing:.15em}
+.skill b{display:block;font-size:15.5px;margin-top:5px;font-weight:500}
+.skill span{display:block;color:var(--wheat);opacity:.75;font-size:12.5px;margin-top:5px}
+.weird-closing{margin-top:38px;font-size:14.5px;color:var(--wheat);opacity:.85;line-height:2}
+.weird-closing b{color:var(--rice);font-weight:500;opacity:1}
+
+/* ================= 10 WHY ================= */
+.why-panel{border:1px solid rgba(139,115,85,.3);background:var(--ink);padding:30px}
+.why-panel p{color:var(--wheat);opacity:.85;line-height:2.05;margin:0;font-size:14.5px}
+.why-list{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.why-list div{padding:14px 0;border-top:1px solid var(--line);font-size:15px}
+.why-final{margin-top:34px;font-family:var(--serif);font-weight:500;font-size:clamp(20px,3vw,28px);line-height:1.7}
+
+/* ================= 11 朽宿 ================= */
+.final{min-height:80svh;display:grid;place-items:center;text-align:center;padding:100px 20px}
+.mark{width:150px;height:150px;border:1px solid var(--copper);border-radius:50%;display:grid;place-items:center;margin:auto;font-family:var(--serif);font-weight:500;font-size:34px}
+.final .tag2{font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--wheat);opacity:.7;margin-top:22px}
+.final blockquote{font-family:var(--serif);font-weight:500;font-size:clamp(26px,4.6vw,52px);line-height:1.5;margin:34px auto 16px;max-width:820px}
+.final p.closing{color:var(--wheat);opacity:.8;font-size:14px;letter-spacing:.06em}
+.back-home-btn{
+  display:inline-block;margin-top:48px;padding:14px 40px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.25em;
+  color:var(--copper-light);border:1px solid var(--copper);
+  text-decoration:none;transition:background .3s,color .3s;
+}
+.back-home-btn:hover{background:var(--copper);color:var(--coal)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:860px){
+  .groups{grid-template-columns:1fr}
+  .weird{grid-template-columns:1fr}
+  .node{width:98px;height:98px}
+  .node strong{font-size:18px}
+  .node span{font-size:8px}
+  .node-pair{padding:0 2%}
+  .file-stamp{display:none}
+  .why-list{grid-template-columns:1fr}
+  .lock-ring{width:150px;height:150px}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{transition:none;opacity:1;transform:none}
+  .scroll-cue,.fp-dot,.fp-scan,.node .ring{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- 00 開場 -->
+<section class="hero">
+  <div class="file-stamp">SPECIMEN FILE / LS<br>SUBJECT — 林立三</div>
+  <div>
+    <div class="kicker">個人能力研究檔案</div>
+    <h1>林立三<span class="romaji">LIN LI-SAN</span></h1>
+    <div class="role">朽宿慢調理保健空間｜主理人</div>
+    <div class="disciplines">傳統整復推拿 × 運動按摩 × 動作訓練 × 樂齡照顧</div>
+    <p class="lede">
+      從照顧人的生活開始，理解人的身體。<br><br>
+      我走過照顧現場，也走進運動與徒手調理。<br>
+      學習解剖、動作、訓練與各種徒手技術，<br>
+      不是為了把證照掛滿一面牆，<br>
+      而是希望面對不同年齡、不同生活狀態的人時，<br>
+      能多一種<b>理解他的方式</b>。
+    </p>
+    <div class="scroll-cue">SCROLL TO UNLOCK ↓</div>
+  </div>
+</section>
+
+<!-- 01 THE TREE -->
+<section class="section tree-stage">
+  <div class="anatomy-bg">
+    <svg viewBox="0 0 400 1400" preserveAspectRatio="xMidYMin slice">
+      <circle cx="200" cy="90" r="42" fill="none" stroke="#F2EDE4" stroke-width="1"/>
+      <line x1="200" y1="132" x2="200" y2="640" stroke="#F2EDE4" stroke-width="1"/>
+      <line x1="200" y1="190" x2="90" y2="360" stroke="#F2EDE4" stroke-width="1"/>
+      <line x1="200" y1="190" x2="310" y2="360" stroke="#F2EDE4" stroke-width="1"/>
+      <line x1="200" y1="640" x2="110" y2="1020" stroke="#F2EDE4" stroke-width="1"/>
+      <line x1="200" y1="640" x2="290" y2="1020" stroke="#F2EDE4" stroke-width="1"/>
+      <g stroke="#F2EDE4" stroke-width="1" fill="none">
+        <path d="M160,220 Q200,400 165,600 T175,900"/>
+        <path d="M240,220 Q200,400 235,600 T225,900"/>
+      </g>
+      <circle cx="200" cy="640" r="4" fill="#F2EDE4"/>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">01 / Tree of Practice</div>
+      <h2>技能生命樹</h2>
+      <p>人，是一棵持續成長的樹。理解越深，根就越穩；枝葉才能延伸。點擊節點，展開對應的資格與訓練。</p>
+    </div>
+
+    <div class="tree" id="tree">
+      <div class="trunk"></div>
+      <div class="trunk-fill" id="trunkFill"></div>
+      <div class="sync-tag" id="syncTag">SYNC 00%</div>
+
+      <div class="node-row reveal">
+        <div class="node" data-node="understand"><div class="ring"></div><span class="num">01</span><div><strong>理解</strong><span>UNDERSTAND</span></div></div>
+      </div>
+
+      <div class="node-row reveal">
+        <div class="node" data-node="body"><div class="ring"></div><span class="num">02</span><div><strong>身體</strong><span>BODY</span></div></div>
+      </div>
+
+      <div class="node-row reveal">
+        <div class="node" data-node="care"><div class="ring"></div><span class="num">03</span><div><strong>照顧</strong><span>CARE</span></div></div>
+      </div>
+
+      <div class="node-row reveal">
+        <div class="node" data-node="safety"><div class="ring"></div><span class="num">04</span><div><strong>安全</strong><span>SAFETY</span></div></div>
+      </div>
+
+      <div class="split-row reveal">
+        <svg class="connector" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <line x1="50" y1="0" x2="19" y2="50"/>
+          <line x1="50" y1="0" x2="81" y2="50"/>
+          <line x1="19" y1="50" x2="50" y2="100"/>
+          <line x1="81" y1="50" x2="50" y2="100"/>
+        </svg>
+        <div class="node-pair">
+          <div class="node" data-node="hands"><div class="ring"></div><span class="num">05</span><div><strong>徒手</strong><span>HANDS-ON</span></div></div>
+          <div class="node" data-node="training"><div class="ring"></div><span class="num">06</span><div><strong>訓練</strong><span>TRAINING</span></div></div>
+        </div>
+      </div>
+
+      <div class="node-row reveal">
+        <div class="node" data-node="life"><div class="ring"></div><span class="num">07</span><div><strong>生活</strong><span>LIFE</span></div></div>
+      </div>
+
+      <div class="node-row reveal">
+        <div class="node" data-node="practice"><div class="ring"></div><span class="num">08</span><div><strong>實踐</strong><span>PRACTICE</span></div></div>
+      </div>
+
+      <div class="node-row reveal">
+        <div class="node" data-node="growth"><div class="ring"></div><span class="num">09</span><div><strong>持續成長</strong><span>GROWTH</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- floating tech panel (global, follows clicked node) -->
+<div class="backdrop" id="backdrop"></div>
+<div class="float-panel hud-corners" id="floatPanel">
+  <div class="fp-head">
+    <div class="fp-id"><span class="fp-dot"></span><span id="fpId">NODE 01 · UNDERSTAND</span></div>
+    <button class="fp-close" id="fpClose" aria-label="關閉">✕</button>
+  </div>
+  <div class="fp-body">
+    <div class="fp-scan"></div>
+    <h4 id="fpTitle">理解</h4>
+    <div class="fp-sub" id="fpSub">觀察 × 判斷 × 系統思維</div>
+    <div id="fpContent"></div>
+    <div class="fp-foot">STATUS: ACTIVE NODE</div>
+  </div>
+</div>
+
+<!-- 07 PROFESSIONAL RECORD -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">07 / Professional Record</div>
+      <h2>專業資格</h2>
+      <p>生命樹之後，回到正式文字紀錄，方便閱讀與確認。</p>
+    </div>
+    <div class="groups">
+      <article class="group reveal" data-code="A-01">
+        <h3>徒手調理 × 運動專業</h3>
+        <div class="rec"><b>民俗調理業傳統整復推拿職類 單一級技術士</b></div>
+        <div class="rec"><b>RSM 運動按摩</b><small>中華民國健身運動協會</small></div>
+        <div class="rec"><b>體適能健身 C 級指導員</b><small>中華民國健身運動協會</small></div>
+        <div class="rec"><b>樂齡健身運動指導員</b><small>中華民國健身運動協會</small></div>
+        <div class="rec"><b>肌能系一級貼紮師</b><small>藍海曙光</small></div>
+      </article>
+      <article class="group reveal" data-code="A-02">
+        <h3>緊急救護 × 照顧專業</h3>
+        <div class="rec"><b>EMT-1 初級救護技術員</b></div>
+        <div class="rec"><b>照顧服務員訓練結業</b></div>
+        <div class="rec"><b>身心障礙支持服務訓練</b></div>
+        <div class="rec"><b>失智症照顧服務訓練</b></div>
+        <div class="rec"><b>口腔內（懸雍垂之前）及人工氣道管內分泌物之清潔、抽吸與移除訓練結業</b></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 09 NEXT NODE -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">09 / Next Node</div>
+      <h2>尚未解鎖</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="lock-ring">
+        <div class="future" id="lockedNode" data-node="locked">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="10" rx="1.5"/>
+            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+          </svg>
+          <strong>2026.09</strong>
+          <span>LOCKED / UPCOMING</span>
+        </div>
+      </div>
+      <div class="future-text">
+        <h3>中華醫事科技大學｜調理保健系二技</h3>
+        <p>預計 2026 年 9 月入學。這是技能樹上尚未點亮的下一個節點。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 奇怪的技能樹 -->
+<section class="section">
+  <div class="wrap weird">
+    <div class="reveal">
+      <div class="kicker">08 / Unexpected Branch</div>
+      <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(34px,5.5vw,60px);margin:10px 0 20px">奇怪的技能樹</h2>
+      <p style="color:var(--wheat);opacity:.8;line-height:2;font-size:14.5px">
+        主線點著點著，不知道為什麼旁邊也亮了一大片。
+      </p>
+    </div>
+    <div class="side-tree reveal">
+      <div class="skill"><div class="code">B-01 / 堆高機</div><b>堆高機操作 單一級技術士</b><span>大型物件搬運技能已解鎖。</span></div>
+      <div class="skill"><div class="code">B-02 / 設計</div><b>廣告設計 丙級技術士</b><span>自己的東西自己設計。</span></div>
+      <div class="skill"><div class="code">B-03 / 組版</div><b>圖文組版 丙級技術士</b><span>自己的版自己排。</span></div>
+      <div class="skill"><div class="code">B-04 / 禮儀</div><b>禮儀服務職業訓練</b><span>人生最後一段路，也曾認真學過。</span></div>
+      <div class="skill"><div class="code">B-05 / 不動產</div><b>不動產營業員</b><span>連房子這條支線都曾經點開。</span></div>
+      <div class="weird-closing">
+        所以如果你問我到底是怎麼點技能樹的……<br><br>
+        <b>我也不知道。</b><br><br>
+        大概就是看到不會的東西，會忍不住想知道它到底怎麼運作。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 WHY THESE SKILLS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">10 / Why These Skills</div>
+      <h2>這些到底怎麼串在一起？</h2>
+    </div>
+    <div class="why-panel reveal">
+      <p>
+        推拿讓我學著用手理解身體。<br><br>
+        運動讓我理解身體如何產生動作。<br><br>
+        照顧讓我看見人在失去部分能力之後，生活會發生什麼。<br><br>
+        急救讓我知道，有些時候，安全永遠排在技術之前。<br><br>
+        至於設計、圖文、不動產、禮儀服務，甚至堆高機……<br>
+        它們可能沒有辦法全部塞進「調理保健」四個字裡。但都是我走過的人生。
+      </p>
+      <div class="why-list">
+        <div>證照證明我曾經學過。</div>
+        <div>經驗證明我真正做過。</div>
+      </div>
+      <div class="why-final">
+        最後想留下來的，不是一面掛滿證書的牆，<br>
+        而是一套屬於自己的，理解身體、動作、照顧與生活的方法。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 朽宿結尾 -->
+<section class="final">
+  <div class="wrap reveal">
+    <div class="mark">朽宿</div>
+    <div class="tag2">慢調理保健空間</div>
+    <blockquote>放鬆不是終點，<br>重新動起來才是開始。</blockquote>
+    <p class="closing">身安，心自有歸處。</p>
+    <a href="index.html" class="back-home-btn">回到朽宿 慢調理保健</a>
+  </div>
+</section>
+
+<script>
+/* scroll reveal */
+const reveals=[...document.querySelectorAll('.reveal')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.14});
+reveals.forEach(el=>io.observe(el));
+
+/* trunk fill + sync 讀數 */
+const tree=document.getElementById('tree');
+const fill=document.getElementById('trunkFill');
+const syncTag=document.getElementById('syncTag');
+function updateTrunk(){
+  const r=tree.getBoundingClientRect(), vh=innerHeight;
+  const p=Math.max(0,Math.min(1,(vh*.75-r.top)/(r.height+vh*.4)));
+  fill.style.height=(p*100)+'%';
+  syncTag.style.top=(p*100)+'%';
+  syncTag.textContent='SYNC '+String(Math.round(p*100)).padStart(2,'0')+'%';
+}
+addEventListener('scroll',updateTrunk,{passive:true});
+addEventListener('resize',updateTrunk);
+updateTrunk();
+
+/* split-row connector lighting */
+function updateLinks(){
+  document.querySelectorAll('.split-row').forEach(row=>{
+    const r=row.getBoundingClientRect();
+    const lit = r.top < innerHeight*.75;
+    row.querySelectorAll('.connector line').forEach(l=>l.classList.toggle('lit',lit));
+  });
+}
+addEventListener('scroll',updateLinks,{passive:true});
+updateLinks();
+
+/* 觸覺回饋：支援的裝置（多為 Android Chrome）點擊節點會震動 */
+function buzz(ms){
+  if(navigator.vibrate){ try{ navigator.vibrate(ms); }catch(e){} }
+}
+
+/* node credential data */
+const NODE_DATA={
+  understand:{en:'UNDERSTAND',sub:'觀察 × 判斷 × 系統思維',creds:null},
+  body:{en:'BODY',sub:'解剖 × 結構 × 功能整合',creds:null},
+  training:{en:'TRAINING',sub:'評估 × 控制 × 訓練 × 強化 × 動能開發',creds:[
+    {t:'體適能健身 C 級指導員',s:'中華民國健身運動協會'},
+    {t:'樂齡健身運動指導員',s:'中華民國健身運動協會'}
+  ]},
+  care:{en:'CARE',sub:'支持 × 陪伴 × 生活照顧',creds:[
+    {t:'照顧服務員訓練結業'},
+    {t:'身心障礙支持服務訓練'},
+    {t:'失智症照顧服務訓練'},
+    {t:'口腔內（懸雍垂之前）及人工氣道管內分泌物之清潔、抽吸與移除訓練結業'}
+  ]},
+  safety:{en:'SAFETY',sub:'急救 × 風險 × 安全意識',creds:[
+    {t:'EMT-1 初級救護技術員'}
+  ]},
+  hands:{en:'HANDS-ON',sub:'觸診 × 手法 × 徒手調理',creds:[
+    {t:'民俗調理業傳統整復推拿職類 單一級技術士'},
+    {t:'RSM 運動按摩',s:'中華民國健身運動協會'},
+    {t:'肌能系一級貼紮師',s:'藍海曙光'}
+  ]},
+  life:{en:'LIFE',sub:'習慣 × 環境 × 回歸日常',creds:null},
+  practice:{en:'PRACTICE',sub:'經驗 × 累積 × 問題解決',creds:null},
+  growth:{en:'GROWTH',sub:'學習 × 實作 × 整合',creds:null},
+  locked:{en:'LOCKED',sub:'尚未解鎖',creds:null,locked:true}
+};
+const ZH={understand:'理解',body:'身體',care:'照顧',safety:'安全',hands:'徒手',training:'訓練',life:'生活',practice:'實踐',growth:'持續成長',locked:'2026.09 · 調理保健系二技'};
+
+const floatPanel=document.getElementById('floatPanel');
+const backdrop=document.getElementById('backdrop');
+const fpId=document.getElementById('fpId');
+const fpTitle=document.getElementById('fpTitle');
+const fpSub=document.getElementById('fpSub');
+const fpContent=document.getElementById('fpContent');
+let openNode=null;
+
+function positionPanel(nodeEl){
+  const r=nodeEl.getBoundingClientRect();
+  const pw = Math.min(360, innerWidth-28);
+  floatPanel.style.width=pw+'px';
+  floatPanel.style.visibility='hidden';
+  floatPanel.classList.add('open');
+  const ph=floatPanel.offsetHeight;
+  floatPanel.classList.remove('open');
+  floatPanel.style.visibility='';
+
+  let top = r.top - ph - 16;
+  let origin='50% 100%';
+  if(top < 12){ top = r.bottom + 16; origin='50% 0%'; }
+  top = Math.max(12, Math.min(top, innerHeight - ph - 12));
+
+  let left = r.left + r.width/2 - pw/2;
+  left = Math.max(12, Math.min(left, innerWidth - pw - 12));
+
+  floatPanel.style.setProperty('--fp-origin',origin);
+  floatPanel.style.top = top+'px';
+  floatPanel.style.left = left+'px';
+}
+
+function renderContent(id){
+  const d=NODE_DATA[id];
+  const numEl=document.querySelector('[data-node="'+id+'"] .num');
+  fpId.textContent = numEl ? `NODE ${numEl.textContent} · ${d.en}` : `NODE — · ${d.en}`;
+  fpTitle.textContent = ZH[id];
+  fpSub.textContent = d.sub;
+  if(d.locked){
+    fpContent.innerHTML = `<p class="fp-empty">此節點尚未解鎖。正式入學後將更新為進行中狀態。</p>`;
+  }else if(d.creds){
+    fpContent.innerHTML = d.creds.map(c=>`<div class="cred-row"><b>${c.t}</b>${c.s?`<small>${c.s}</small>`:''}</div>`).join('');
+  }else{
+    fpContent.innerHTML = `<p class="fp-empty">此節點為能力整合概念，尚未對應單一證照。</p>`;
+  }
+}
+
+function openPanel(nodeEl){
+  const id=nodeEl.dataset.node;
+  document.querySelectorAll('.node,#lockedNode').forEach(n=>n.classList.toggle('on',n===nodeEl));
+  renderContent(id);
+  positionPanel(nodeEl);
+  requestAnimationFrame(()=>{
+    floatPanel.classList.add('open');
+    backdrop.classList.add('open');
+  });
+  openNode=id;
+  buzz(id==='locked' ? [15,40,15] : 12);
+}
+
+function closePanel(){
+  floatPanel.classList.remove('open');
+  backdrop.classList.remove('open');
+  document.querySelectorAll('.node,#lockedNode').forEach(n=>n.classList.remove('on'));
+  openNode=null;
+}
+
+document.querySelectorAll('.node,#lockedNode').forEach(n=>{
+  n.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    if(openNode===n.dataset.node){ closePanel(); return; }
+    openPanel(n);
+  });
+});
+document.getElementById('fpClose').addEventListener('click',closePanel);
+backdrop.addEventListener('click',closePanel);
+addEventListener('keydown',e=>{ if(e.key==='Escape') closePanel(); });
+addEventListener('scroll',()=>{ if(openNode) closePanel(); },{passive:true});
+addEventListener('resize',()=>{ if(openNode){ const el=document.querySelector('[data-node="'+openNode+'"]'); if(el) positionPanel(el); } });
+</script>
+</body>
+</html>
